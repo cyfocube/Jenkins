@@ -3,8 +3,8 @@
 
 pipelines {
     agent any
-    // # 
-    node {
+ 
+    stages {
     stage ('Build_stage'){
         echo 'this is my build stage'
     }
