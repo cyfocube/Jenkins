@@ -14,6 +14,22 @@ node {
     stage('deploy'){
         echo 'Deploy in PROD'
     }
-
+// Or 
+    stage('Build'){
+        echo 'this is build stage'
+    }
+    
+    stage ('Testing'){
+        echo 'this is testing stage'
+    }
+    
+    stage ('Deploy'){
+        echo 'this is deploying stage'
+    }
+    
+    stage ('Release'){
+        echo 'this is release stage'
+    }
+    
 
 }
