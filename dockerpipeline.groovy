@@ -16,7 +16,14 @@ pipeline {
             }
         }
 
+        stage('Validating the cloned contents'){
+            steps{
+                sh '''
+                ls
+                '''
 
+            }
+        }
 
 
     }
