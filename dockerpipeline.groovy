@@ -1,30 +1,29 @@
 pipeline {
-    agent {label 'master'}
+    agent {
+        label 'master'
+    }
 
     stages {
-        stage ('Clonethe workspace'){
-            steps{
-            CleanWs()
+        stage ('Clone the workspace') {
+            steps {
+                cleanWs()
             }
-
         }
 
-        stage('Clone the source code'){
-            steps{
+        stage('Clone the source code') {
+            steps {
                 echo 'In SCM stage'
-                 git credentialId: 	'7a274961-ac5e-4b91-8336-62ccb8bf06b0', url:'https://github.com/cyfocube/Jenkins.git', branch:'main'
+                git credentialsId: 'Git-Credentials', url: 'https://github.com/cyfocube/Jenkins.git', branch: 'main'
             }
         }
 
-        stage('Validating the cloned contents'){
-            steps{
+        stage('Validating the cloned contents') {
+            steps {
                 sh '''
                 ls
+                pwd
                 '''
-
             }
         }
-
-
     }
 }
