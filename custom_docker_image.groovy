@@ -11,20 +11,20 @@ pipeline {
 			stage('Git Clone') {
 				steps {
 					
-					sshagent(['ffake-docker-pai']) {
+					sshagent(['fake-pai']) {
 						 
-						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo yum install git -y'
+                 	 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo apt-get install git -y'
                          sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo rm -rf Jenkins'
 						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo git clone https://github.com/cyfocube/Jenkins.git'
 						 
 					}		  
 				}
 			}
-			
-			stage('Verify the Clone') {
+		
+	stage('Verify the Clone') {
 				steps {
 					
-					sshagent(['fake-docker-pai']) {
+					sshagent(['fake-pai']) {
 						 
 						 
 						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo pwd'
@@ -35,15 +35,15 @@ pipeline {
 					}		  
 				}
 			}
-			
-			stage('Build the Docker Image') {
+	stage('Build the Docker Image') {
 				steps {
 					
-					sshagent(['fake-docker-pai']) {
-						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo apt-get update'
-						sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo apt-get install docker'
-						sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo snap install docker'
-						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo docker build -t cyfodocker /home/ec2-user/Jenkins/'
+					sshagent(['fake-pai']) {
+						 
+						  sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo apt-get update -y'
+						sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo apt-get install docker -y'
+						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo snap install docker'
+						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo docker build -t cyfodocker /home/ubuntu/Jenkins/'
 					
 						 
 						 
@@ -54,7 +54,7 @@ pipeline {
 			stage('Docker images') {
 				steps {
 					
-					sshagent(['fake-docker-pai']) {
+					sshagent(['fake-pai']) {
 						 
 						 sh 'ssh -o StrictHostKeyChecking=no ${hostname} sudo docker images'
 						
