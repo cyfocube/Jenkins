@@ -5,9 +5,9 @@ RUN apt-get update && \
 
 WORKDIR /var/www/html
 
-RUN git clone https://github.com/cyfocube/Jenkins.git
+RUN git clone https://github.com/hariharanjenkin/webapp.git
 
-RUN cp webapp/Index.html /var/www/html && \
+RUN cp webapp/index.html /var/www/html && \
     cp webapp/Readme.file /var/www/html && \
     cp -r webapp/src /var/www/html
 
